@@ -1,86 +1,296 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Peninsula Surf School</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+<title>Peninsula Surf School — Playa Bonita, Dominican Republic</title>
+<meta name="description" content="Private surf lessons in Playa Bonita, Las Terrenas, Samaná. Learn with Peninsula Surf School." />
 
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-      overflow: hidden;
-      background: black;
-    }
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
 
-    /* Video Background */
-    .video-container {
-      position: relative;
-      height: 100vh;
-      width: 100%;
-      overflow: hidden;
-    }
+<style>
+:root{
+  --bg:#0b0b0b;
+  --text:#f2e6cf;
+  --muted:rgba(242,230,207,0.75);
+  --olive:#3f4a2f;
+  --line:rgba(242,230,207,0.18);
+  --radius:18px;
+  --max:1100px;
+  --pad:20px;
+}
 
-    .video-container video {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      min-width: 100%;
-      min-height: 100%;
-      width: auto;
-      height: auto;
-      transform: translate(-50%, -50%);
-      object-fit: cover;
-      z-index: 1;
-    }
+*{box-sizing:border-box;}
+body{
+  margin:0;
+  background:#0b0b0b;
+  color:var(--text);
+  font-family:Inter,system-ui;
+}
 
-    /* Logo Overlay */
-    .hero-logo {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      z-index: 2;
-      text-align: center;
-    }
+a{color:inherit;text-decoration:none;}
+.container{width:min(var(--max),calc(100% - 2*var(--pad)));margin:0 auto;}
 
-    .hero-logo img {
-      width: 500px;
-      max-width: 85vw;
-      height: auto;
-      animation: fadeIn 1.5s ease forwards;
-    }
+header{
+  position:fixed;
+  top:0;
+  width:100%;
+  backdrop-filter:blur(10px);
+  background:rgba(0,0,0,0.45);
+  border-bottom:1px solid var(--line);
+  z-index:100;
+}
+.nav{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:16px 0;
+}
+.brand{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  font-weight:700;
+}
+.logo{
+  width:44px;
+  height:44px;
+  border-radius:12px;
+  object-fit:cover;
+  border:1px solid var(--line);
+}
+nav a{
+  margin-left:22px;
+  color:var(--muted);
+  font-weight:500;
+}
+nav a:hover{color:var(--text);}
 
-    @keyframes fadeIn {
-      from {
-        opacity: 0;
-        transform: translate(-50%, -45%);
-      }
-      to {
-        opacity: 1;
-        transform: translate(-50%, -50%);
-      }
-    }
+.hero-video{
+  position:relative;
+  height:100vh;
+  min-height:700px;
+  overflow:hidden;
+  display:flex;
+  align-items:center;
+}
 
-  </style>
+.video-bg{
+  position:absolute;
+  inset:0;
+  z-index:0;
+}
+.video-bg iframe{
+  position:absolute;
+  top:50%;
+  left:50%;
+  width:177.77vh;
+  height:100vh;
+  transform:translate(-50%, -50%);
+  pointer-events:none;
+}
+
+.overlay{
+  position:absolute;
+  inset:0;
+  background:linear-gradient(180deg, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.8) 70%);
+  z-index:1;
+}
+
+.hero-content{
+  position:relative;
+  z-index:2;
+  max-width:800px;
+}
+
+.kicker{
+  text-transform:uppercase;
+  letter-spacing:1.2px;
+  color:var(--muted);
+  font-size:0.85rem;
+}
+
+h1{
+  font-family:Anton,Impact,sans-serif;
+  font-size:clamp(2.8rem,6vw,4.5rem);
+  margin:12px 0;
+  letter-spacing:1px;
+}
+
+.lead{
+  font-size:1.1rem;
+  line-height:1.6;
+  color:rgba(242,230,207,0.85);
+  max-width:600px;
+}
+
+.btns{
+  margin-top:26px;
+  display:flex;
+  gap:14px;
+  flex-wrap:wrap;
+}
+
+.btn{
+  padding:14px 22px;
+  border-radius:14px;
+  border:1px solid var(--line);
+  background:rgba(255,255,255,0.06);
+  font-weight:600;
+  transition:all .2s ease;
+}
+.btn:hover{background:rgba(255,255,255,0.12);}
+
+.btn-primary{
+  background:rgba(63,74,47,0.5);
+  border-color:rgba(63,74,47,0.9);
+}
+.btn-primary:hover{
+  background:rgba(63,74,47,0.8);
+}
+
+.section{
+  padding:100px 0;
+}
+
+.card{
+  background:rgba(255,255,255,0.05);
+  border:1px solid var(--line);
+  border-radius:var(--radius);
+  padding:28px;
+}
+
+.card h2{
+  font-family:Anton;
+  letter-spacing:1px;
+  margin-top:0;
+}
+
+.grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:24px;
+}
+@media(max-width:900px){
+  .grid{grid-template-columns:1fr;}
+  .video-bg iframe{
+    width:100vw;
+    height:56.25vw;
+  }
+}
+
+footer{
+  border-top:1px solid var(--line);
+  padding:40px 0;
+  text-align:center;
+  background:#080808;
+  color:var(--muted);
+  font-size:0.9rem;
+}
+</style>
 </head>
 
 <body>
 
-  <div class="video-container">
-    <video autoplay muted loop playsinline>
-      <source src="assets/your-video.mp4" type="video/mp4">
-    </video>
+<header>
+  <div class="container nav">
+    <div class="brand">
+      <img src="./assets/logo.jpg" class="logo" alt="Peninsula Logo">
+      <span>Peninsula</span>
+    </div>
+    <nav>
+      <a href="./about.html">About</a>
+      <a href="#contact">Book</a>
+    </nav>
+  </div>
+</header>
 
-    <div class="hero-logo">
-      <img src="/assets/logo-word.png" alt="Peninsula Surf School Logo">
+<section class="hero-video">
+
+  <div class="video-bg">
+    <iframe
+      src="https://www.youtube.com/embed/NQyanL1QEPw?autoplay=1&mute=1&loop=1&playlist=NQyanL1QEPw&controls=0&modestbranding=1&rel=0"
+      frameborder="0"
+      allow="autoplay; fullscreen"
+      allowfullscreen>
+    </iframe>
+  </div>
+
+  <div class="overlay"></div>
+
+  <div class="hero-content container">
+    <p class="kicker">Playa Bonita • Las Terrenas • Dominican Republic</p>
+    <h1>Peninsula Surf School</h1>
+    <p class="lead">
+      Private and small-group surf lessons in Samaná.
+      Safe progression. Clean coaching. Good energy.
+    </p>
+    <div class="btns">
+      <a class="btn btn-primary" href="#contact">Book a Lesson</a>
+      <a class="btn" href="./about.html">Meet Cristian</a>
     </div>
   </div>
+
+</section>
+
+<section class="section">
+  <div class="container grid">
+    <div class="card">
+      <h2>Location</h2>
+      <p>Teaching at <strong>Playa Bonita</strong>, Las Terrenas (Samaná). Also available in Cabarete by request.</p>
+    </div>
+
+    <div class="card">
+      <h2>What You'll Learn</h2>
+      <p>Ocean safety, fundamentals, wave reading, and technique refinement for all levels.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="contact">
+  <div class="container">
+    <div class="card">
+      <h2>Book a Lesson</h2>
+      <form id="contactForm">
+        <input required name="name" placeholder="Your name"
+          style="width:100%;padding:14px;margin-bottom:14px;border-radius:12px;border:1px solid var(--line);background:#111;color:var(--text);" />
+
+        <input required name="email" placeholder="Your email"
+          style="width:100%;padding:14px;margin-bottom:14px;border-radius:12px;border:1px solid var(--line);background:#111;color:var(--text);" />
+
+        <textarea required name="message" rows="4" placeholder="Your level, dates, group size"
+          style="width:100%;padding:14px;border-radius:12px;border:1px solid var(--line);background:#111;color:var(--text);"></textarea>
+
+        <button class="btn btn-primary" style="margin-top:16px;">Send Inquiry</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<footer>
+  © <span id="year"></span> Peninsula Surf School • Playa Bonita, Dominican Republic
+</footer>
+
+<script>
+document.getElementById("year").textContent = new Date().getFullYear();
+
+document.getElementById("contactForm").addEventListener("submit", function(e){
+  e.preventDefault();
+  const form = new FormData(e.target);
+  const name = form.get("name");
+  const email = form.get("email");
+  const message = form.get("message");
+
+  const to = "hello@yourdomain.com"; // CHANGE THIS
+  const subject = encodeURIComponent("Peninsula Surf Lesson Inquiry");
+  const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\n${message}`);
+
+  window.location.href = `mailto:${to}?subject=${subject}&body=${body}`;
+});
+</script>
 
 </body>
 </html>
