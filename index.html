@@ -3,697 +3,347 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>WaveCamp — Surf Trips (One File)</title>
-  <meta name="description" content="A simplified surf camp landing page in one HTML file." />
+  <title>Peninsula Surf School — Samaná, Dominican Republic</title>
+  <meta name="description" content="Surf lessons in Playa Bonita, Las Terrenas (Samaná, Dominican Republic). Book a lesson with Peninsula Surf School." />
+
+  <!-- Optional: pulls a bold condensed font similar to your logo vibe -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
 
   <style>
     :root{
-      --bg: #0b1220;
+      /* Palette inspired by your logo */
+      --bg: #0b0b0b;
       --panel: rgba(255,255,255,0.06);
-      --panel-strong: rgba(255,255,255,0.10);
-      --text: rgba(255,255,255,0.92);
-      --muted: rgba(255,255,255,0.72);
-      --line: rgba(255,255,255,0.16);
-      --shadow: 0 12px 28px rgba(0,0,0,0.35);
+      --line: rgba(255,255,255,0.14);
+      --text: #f2e6cf;        /* creamy */
+      --muted: rgba(242,230,207,0.72);
+      --olive: #3f4a2f;       /* olive green */
+      --olive2: rgba(63,74,47,0.35);
       --radius: 18px;
-      --radius-sm: 12px;
-      --max: 1120px;
+      --max: 1040px;
       --pad: 20px;
+      --shadow: 0 16px 40px rgba(0,0,0,0.45);
     }
 
     *{ box-sizing: border-box; }
-    html, body{ height: 100%; }
+    html,body{ height: 100%; }
     body{
       margin: 0;
-      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
       color: var(--text);
       background:
-        radial-gradient(1200px 600px at 20% -10%, rgba(80,170,255,0.28), transparent 65%),
-        radial-gradient(900px 600px at 95% 15%, rgba(120,255,220,0.18), transparent 60%),
-        linear-gradient(180deg, #070b14 0%, #0b1220 50%, #070b14 100%);
+        radial-gradient(900px 500px at 30% -10%, rgba(63,74,47,0.55), transparent 60%),
+        linear-gradient(180deg, #070707 0%, #0b0b0b 40%, #070707 100%);
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
     }
 
     a{ color: inherit; text-decoration: none; }
-    a.link{ text-decoration: underline; text-underline-offset: 3px; }
+    .container{ width: min(var(--max), calc(100% - 2*var(--pad))); margin: 0 auto; }
 
-    .container{
-      width: min(var(--max), calc(100% - 2*var(--pad)));
-      margin: 0 auto;
-    }
-
-    .sr-only{
-      position: absolute;
-      width: 1px; height: 1px;
-      padding: 0; margin: -1px;
-      overflow: hidden; clip: rect(0,0,0,0);
-      white-space: nowrap; border: 0;
-    }
-
-    .skip-link{
-      position: absolute;
-      left: -999px;
-      top: 10px;
-      background: #fff;
-      color: #000;
-      padding: 10px 12px;
-      border-radius: 10px;
-      z-index: 9999;
-    }
-    .skip-link:focus{ left: 12px; }
-
-    .muted{ color: var(--muted); }
-    .small{ font-size: 0.92rem; }
-    .mt-12{ margin-top: 12px; }
-    .mt-24{ margin-top: 24px; }
-    .center{ text-align: center; }
-
-    /* Header / Nav */
-    .site-header{
-      position: sticky;
-      top: 0;
-      z-index: 50;
+    /* Header */
+    header{
+      position: sticky; top: 0; z-index: 10;
       backdrop-filter: blur(10px);
-      background: rgba(7,11,20,0.55);
+      background: rgba(11,11,11,0.65);
       border-bottom: 1px solid var(--line);
     }
-    .header-inner{
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
+    .nav{
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 14px 0;
       gap: 14px;
-      padding: 12px 0;
     }
     .brand{
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      font-weight: 700;
+      display: inline-flex; align-items: center; gap: 12px;
+      font-weight: 800;
       letter-spacing: 0.2px;
     }
-    .brand-mark{
-      width: 34px; height: 34px;
-      display: grid; place-items: center;
-      border-radius: 12px;
-      background: rgba(255,255,255,0.10);
+    .logo{
+      width: 44px; height: 44px;
+      border-radius: 14px;
+      object-fit: cover;
       border: 1px solid var(--line);
+      background: rgba(255,255,255,0.06);
     }
-    .brand-name{ font-size: 1.05rem; }
-
-    .site-nav{
-      display: flex;
-      align-items: center;
-      gap: 18px;
-    }
-    .site-nav a{
+    nav a{
       color: var(--muted);
       padding: 8px 10px;
-      border-radius: 10px;
-    }
-    .site-nav a:hover{ color: var(--text); background: rgba(255,255,255,0.06); }
-
-    .nav-cta{
-      background: rgba(255,255,255,0.10);
-      border: 1px solid var(--line);
-      color: var(--text) !important;
-    }
-
-    .nav-toggle{
-      display: none;
-      background: rgba(255,255,255,0.10);
-      border: 1px solid var(--line);
-      color: var(--text);
       border-radius: 12px;
-      padding: 8px 10px;
-      cursor: pointer;
+    }
+    nav a:hover{ color: var(--text); background: rgba(255,255,255,0.06); }
+    .cta{
+      border: 1px solid rgba(242,230,207,0.25);
+      background: rgba(63,74,47,0.25);
+      color: var(--text);
     }
 
-    @media (max-width: 760px){
-      .nav-toggle{ display: inline-flex; }
-      .site-nav{
-        position: absolute;
-        right: var(--pad);
-        top: 62px;
-        width: min(320px, calc(100% - 2*var(--pad)));
-        flex-direction: column;
-        align-items: stretch;
-        gap: 6px;
-        padding: 10px;
-        border-radius: 16px;
-        border: 1px solid var(--line);
-        background: rgba(7,11,20,0.92);
-        box-shadow: var(--shadow);
-        display: none;
-      }
-      .site-nav.is-open{ display: flex; }
+    /* Layout blocks */
+    .hero{ padding: 64px 0 24px; }
+    .hero-grid{
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 18px;
+      align-items: stretch;
+    }
+    @media (max-width: 880px){ .hero-grid{ grid-template-columns: 1fr; } }
+
+    .kicker{
+      margin: 0 0 10px;
+      color: rgba(242,230,207,0.78);
+      letter-spacing: 0.4px;
+      text-transform: uppercase;
+      font-size: 0.9rem;
+    }
+    h1{
+      margin: 0 0 10px;
+      font-family: Anton, Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+      font-size: clamp(2.2rem, 5vw, 3.4rem);
+      letter-spacing: 0.5px;
+      line-height: 1.02;
+    }
+    .lead{
+      margin: 0 0 18px;
+      color: rgba(242,230,207,0.8);
+      line-height: 1.65;
+      font-size: 1.05rem;
+      max-width: 58ch;
     }
 
-    /* Buttons / Cards */
+    .btns{ display: flex; flex-wrap: wrap; gap: 10px; margin-top: 14px; }
     .btn{
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      padding: 11px 14px;
+      display: inline-flex; align-items: center; justify-content: center;
+      padding: 12px 14px;
       border-radius: 14px;
       border: 1px solid var(--line);
       background: rgba(255,255,255,0.06);
-      color: var(--text);
-      font-weight: 650;
+      font-weight: 700;
     }
     .btn:hover{ background: rgba(255,255,255,0.10); }
-
     .btn-primary{
-      background: rgba(80,170,255,0.25);
-      border-color: rgba(80,170,255,0.45);
+      background: rgba(63,74,47,0.35);
+      border-color: rgba(63,74,47,0.75);
     }
-    .btn-primary:hover{ background: rgba(80,170,255,0.32); }
-
-    .btn-ghost{ background: rgba(255,255,255,0.04); }
 
     .card{
       border-radius: var(--radius);
       border: 1px solid var(--line);
       background: var(--panel);
+      box-shadow: var(--shadow);
       padding: 18px;
     }
-    .card:hover{ background: var(--panel-strong); }
-
-    .card h3, .card h2{ margin: 0 0 8px 0; }
-    .card p{ margin: 0 0 10px 0; line-height: 1.55; }
-
-    /* Layout */
-    .section{ padding: 56px 0; }
-    .section-alt{
-      background: rgba(255,255,255,0.03);
-      border-top: 1px solid rgba(255,255,255,0.08);
-      border-bottom: 1px solid rgba(255,255,255,0.08);
+    .card h2{
+      margin: 0 0 10px;
+      font-family: Anton, Impact, sans-serif;
+      letter-spacing: 0.4px;
+      font-size: 1.4rem;
     }
+    .muted{ color: var(--muted); }
+    .list{ margin: 12px 0 0 18px; padding: 0; }
+    .list li{ margin: 8px 0; line-height: 1.55; }
 
-    .section-head{ margin-bottom: 18px; }
-    .section-head h2{
-      margin: 0 0 8px 0;
-      font-size: clamp(1.4rem, 2.2vw, 1.9rem);
-    }
-    .section-head p{ margin: 0; }
-
-    .grid-3{
+    .section{ padding: 24px 0 50px; }
+    .grid-2{
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: 1fr 1fr;
       gap: 14px;
     }
-    @media (max-width: 900px){
-      .grid-3{ grid-template-columns: 1fr; }
-    }
+    @media (max-width: 880px){ .grid-2{ grid-template-columns: 1fr; } }
 
-    /* Hero */
-    .hero{ padding: 70px 0 46px; }
-    .hero-grid{
+    /* Video placeholder */
+    .video{
+      border-radius: var(--radius);
+      border: 1px dashed rgba(242,230,207,0.28);
+      background: rgba(63,74,47,0.10);
+      min-height: 240px;
       display: grid;
-      grid-template-columns: 1.25fr 0.95fr;
-      gap: 18px;
-      align-items: stretch;
-    }
-    @media (max-width: 900px){
-      .hero-grid{ grid-template-columns: 1fr; }
+      place-items: center;
+      padding: 18px;
+      text-align: center;
     }
 
-    .kicker{
-      margin: 0 0 10px 0;
-      color: rgba(255,255,255,0.78);
-      letter-spacing: 0.3px;
+    footer{
+      border-top: 1px solid var(--line);
+      padding: 28px 0;
+      background: rgba(0,0,0,0.35);
     }
-    .hero h1{
-      margin: 0 0 10px 0;
-      font-size: clamp(2rem, 4vw, 3rem);
-      line-height: 1.05;
-    }
-    .lead{
-      margin: 0 0 18px 0;
-      color: rgba(255,255,255,0.80);
-      line-height: 1.6;
-      font-size: 1.06rem;
-    }
-    .hero-actions{
+    .foot{
       display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 16px;
       flex-wrap: wrap;
-      gap: 10px;
-      margin-bottom: 14px;
     }
-
-    .hero-badges{
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-    }
-    .badge{
-      font-size: 0.92rem;
-      color: rgba(255,255,255,0.82);
+    .small{ font-size: 0.92rem; }
+    .pill{
+      display:inline-flex;
+      border: 1px solid rgba(242,230,207,0.18);
+      background: rgba(255,255,255,0.04);
       padding: 8px 10px;
       border-radius: 999px;
-      border: 1px solid var(--line);
-      background: rgba(255,255,255,0.05);
-    }
-
-    .hero-card{
-      border-radius: var(--radius);
-      border: 1px solid rgba(255,255,255,0.14);
-      background:
-        radial-gradient(600px 320px at 20% 10%, rgba(80,170,255,0.40), transparent 60%),
-        radial-gradient(500px 320px at 90% 10%, rgba(120,255,220,0.26), transparent 60%),
-        linear-gradient(180deg, rgba(255,255,255,0.10), rgba(255,255,255,0.04));
-      box-shadow: var(--shadow);
-      min-height: 280px;
-      display: grid;
-      place-items: end;
-      overflow: hidden;
-    }
-    .hero-card-inner{
-      width: 100%;
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 10px;
-      padding: 16px;
-      background: rgba(7,11,20,0.35);
-      border-top: 1px solid rgba(255,255,255,0.12);
-    }
-    @media (max-width: 520px){
-      .hero-card-inner{ grid-template-columns: 1fr; }
-    }
-    .stat{
-      border-radius: var(--radius-sm);
-      border: 1px solid rgba(255,255,255,0.12);
-      background: rgba(255,255,255,0.06);
-      padding: 12px;
-    }
-    .stat-num{ font-size: 1.25rem; font-weight: 800; }
-    .stat-label{ color: rgba(255,255,255,0.75); margin-top: 2px; font-size: 0.95rem; }
-
-    /* Pills / Callout */
-    .pill-grid{
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-    }
-    .pill{
-      padding: 10px 12px;
-      border-radius: 999px;
-      border: 1px solid var(--line);
-      background: rgba(255,255,255,0.05);
-      color: rgba(255,255,255,0.82);
-    }
-
-    .callout{
-      margin-top: 18px;
-      padding: 16px;
-      border-radius: var(--radius);
-      border: 1px solid rgba(80,170,255,0.35);
-      background: rgba(80,170,255,0.14);
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 14px;
-    }
-    .callout-title{ margin: 0 0 6px 0; }
-    @media (max-width: 760px){
-      .callout{ flex-direction: column; align-items: stretch; }
-    }
-
-    /* Media cards (no image files needed) */
-    .card-media .media{
-      height: 150px;
-      border-radius: 14px;
-      border: 1px solid rgba(255,255,255,0.14);
-      margin-bottom: 12px;
-      background-size: cover;
-      background-position: center;
-    }
-    .media-1{
-      background-image:
-        radial-gradient(420px 200px at 20% 20%, rgba(80,170,255,0.55), transparent 60%),
-        linear-gradient(135deg, rgba(255,255,255,0.10), rgba(255,255,255,0.02));
-    }
-    .media-2{
-      background-image:
-        radial-gradient(420px 200px at 70% 25%, rgba(120,255,220,0.42), transparent 60%),
-        linear-gradient(135deg, rgba(255,255,255,0.10), rgba(255,255,255,0.02));
-    }
-    .media-3{
-      background-image:
-        radial-gradient(420px 200px at 35% 35%, rgba(255,190,120,0.28), transparent 60%),
-        linear-gradient(135deg, rgba(255,255,255,0.10), rgba(255,255,255,0.02));
-    }
-
-    /* FAQ */
-    .faq{ display: grid; gap: 10px; }
-    .faq-item{
-      border-radius: var(--radius);
-      border: 1px solid var(--line);
-      background: rgba(255,255,255,0.05);
-      padding: 14px 16px;
-    }
-    .faq-item summary{ cursor: pointer; font-weight: 700; }
-    .faq-body{ margin-top: 10px; color: rgba(255,255,255,0.80); line-height: 1.6; }
-
-    /* Footer */
-    .site-footer{
-      padding: 34px 0;
-      border-top: 1px solid var(--line);
-      background: rgba(7,11,20,0.55);
-    }
-    .footer-grid{
-      display: grid;
-      grid-template-columns: 1.2fr 0.8fr 0.6fr;
-      gap: 14px;
-      align-items: start;
-    }
-    .footer-links{ display: grid; gap: 8px; }
-    .footer-mini{ display: grid; gap: 8px; justify-items: start; }
-    @media (max-width: 900px){
-      .footer-grid{ grid-template-columns: 1fr; }
+      margin-right: 8px;
+      margin-top: 8px;
+      color: rgba(242,230,207,0.85);
+      font-size: 0.92rem;
     }
   </style>
 </head>
 
 <body>
-  <a class="skip-link" href="#main">Skip to content</a>
-
-  <header class="site-header" id="top">
-    <div class="container header-inner">
-      <a class="brand" href="#top" aria-label="WaveCamp home">
-        <span class="brand-mark" aria-hidden="true">🌊</span>
-        <span class="brand-name">WaveCamp</span>
+  <header>
+    <div class="container nav">
+      <a class="brand" href="./index.html" aria-label="Peninsula home">
+        <img class="logo" src="./assets/logo.jpg" alt="Peninsula Surf School logo">
+        <span>Peninsula</span>
       </a>
 
-      <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="siteNav">
-        <span class="sr-only">Toggle navigation</span>
-        <span aria-hidden="true">☰</span>
-      </button>
-
-      <nav class="site-nav" id="siteNav">
-        <a href="#camps">Camps</a>
-        <a href="#about">About</a>
-        <a href="#contact" class="nav-cta">Contact</a>
+      <nav>
+        <a href="./about.html">About</a>
+        <a class="cta" href="#book">Book</a>
       </nav>
     </div>
   </header>
 
-  <main id="main">
-    <!-- HERO -->
+  <main>
     <section class="hero">
       <div class="container hero-grid">
-        <div class="hero-copy">
-          <p class="kicker">Good times • Great waves • Amazing people</p>
-          <h1>Surf trips out of the ordinary.</h1>
+        <div>
+          <p class="kicker">Surf Lessons • Playa Bonita • Las Terrenas</p>
+          <h1>Peninsula Surf School</h1>
           <p class="lead">
-            A friendly surf camp experience for beginners through to confident surfers.
-            Come solo or with friends — leave with a crew.
+            Private and small-group surf lessons in <strong>Playa Bonita</strong>, Las Terrenas (Samaná, Dominican Republic).
+            Clean coaching, safe progression, and a good time in the water.
           </p>
 
-          <div class="hero-actions">
-            <a class="btn btn-primary" href="#camps">Explore camps</a>
-            <a class="btn btn-ghost" href="#why">Why choose us?</a>
+          <div class="pill">Beginner friendly</div>
+          <div class="pill">All levels</div>
+          <div class="pill">Las Terrenas</div>
+          <div class="pill">Also Cabarete</div>
+
+          <div class="btns" id="book">
+            <!-- Replace the # with your real booking link later (Calendly / WhatsApp / Google Form) -->
+            <a class="btn btn-primary" href="#contact">Book a lesson</a>
+            <a class="btn" href="./about.html">Meet the instructor</a>
           </div>
 
-          <div class="hero-badges" aria-label="Key highlights">
-            <div class="badge">Beginner-friendly</div>
-            <div class="badge">Progress-focused</div>
-            <div class="badge">Community-first</div>
-          </div>
-        </div>
-
-        <div class="hero-card" role="img" aria-label="Stylized ocean hero image">
-          <div class="hero-card-inner">
-            <div class="stat">
-              <div class="stat-num">7</div>
-              <div class="stat-label">Destinations</div>
-            </div>
-            <div class="stat">
-              <div class="stat-num">All</div>
-              <div class="stat-label">Levels welcome</div>
-            </div>
-            <div class="stat">
-              <div class="stat-num">Fast</div>
-              <div class="stat-label">Wi-Fi (most camps)</div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- WHY -->
-    <section class="section" id="why">
-      <div class="container">
-        <div class="section-head">
-          <h2>Why surfers choose WaveCamp</h2>
-          <p class="muted">Simple: progress, good people, and a vibe that makes it easy to belong.</p>
-        </div>
-
-        <div class="grid-3">
-          <article class="card">
-            <h3>Community from day one</h3>
-            <p>Arrive, meet people fast, surf together, eat together, laugh a lot.</p>
-          </article>
-          <article class="card">
-            <h3>Real progression</h3>
-            <p>Structured sessions adapted to your level so you improve without feeling overwhelmed.</p>
-          </article>
-          <article class="card">
-            <h3>Epic locations</h3>
-            <p>Handpicked surf towns with great waves, local culture, and downtime that hits.</p>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <!-- ABOUT -->
-    <section class="section section-alt" id="about">
-      <div class="container">
-        <div class="section-head">
-          <h2>Who it’s for</h2>
-          <p class="muted">Come as you are. We’ll do the rest.</p>
-        </div>
-
-        <div class="pill-grid">
-          <div class="pill">Beginners — first waves, safe beaches</div>
-          <div class="pill">Intermediate — technique & confidence</div>
-          <div class="pill">Advanced — guiding & scoring sessions</div>
-          <div class="pill">Solo travellers — meet a crew instantly</div>
-          <div class="pill">Digital nomads — work + surf balance</div>
-          <div class="pill">Yoga lovers — stretch + stoke</div>
-        </div>
-
-        <div class="callout">
-          <div>
-            <h3 class="callout-title">Start simple, then add bookings</h3>
-            <p class="muted">This is a one-page MVP. Later you can add pricing, a booking button, and real photos.</p>
-          </div>
-          <a class="btn btn-primary" href="#contact">Ask a question</a>
-        </div>
-      </div>
-    </section>
-
-    <!-- CAMPS -->
-    <section class="section" id="camps">
-      <div class="container">
-        <div class="section-head">
-          <h2>Pick your dream destination</h2>
-          <p class="muted">A few examples — keep it simple, then expand later.</p>
-        </div>
-
-        <div class="grid-3">
-          <article class="card card-media">
-            <div class="media media-1" aria-hidden="true"></div>
-            <h3>Portugal</h3>
-            <p class="muted">Beach breaks, culture, and cozy surf-town energy.</p>
-            <a class="link" href="#contact" data-camp="Portugal">Ask about Portugal →</a>
-          </article>
-
-          <article class="card card-media">
-            <div class="media media-2" aria-hidden="true"></div>
-            <h3>Bali</h3>
-            <p class="muted">Warm water, consistent waves, and serious post-surf food.</p>
-            <a class="link" href="#contact" data-camp="Bali">Ask about Bali →</a>
-          </article>
-
-          <article class="card card-media">
-            <div class="media media-3" aria-hidden="true"></div>
-            <h3>Costa Rica</h3>
-            <p class="muted">Sunsets, jungle adventures, and friendly lineups.</p>
-            <a class="link" href="#contact" data-camp="Costa Rica">Ask about Costa Rica →</a>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <!-- FAQ -->
-    <section class="section section-alt" id="faq">
-      <div class="container">
-        <div class="section-head">
-          <h2>FAQ</h2>
-          <p class="muted">Answer the questions people always ask before they book.</p>
-        </div>
-
-        <div class="faq">
-          <details class="faq-item">
-            <summary>Can total beginners join?</summary>
-            <div class="faq-body">
-              <p>Yes. Beginner programs focus on safety, ocean basics, and step-by-step progress with soft boards.</p>
-            </div>
-          </details>
-
-          <details class="faq-item">
-            <summary>What’s included?</summary>
-            <div class="faq-body">
-              <p>Typically: accommodation, coaching, equipment, and a few social activities. Customize to your needs.</p>
-            </div>
-          </details>
-
-          <details class="faq-item">
-            <summary>Is Wi-Fi good enough for remote work?</summary>
-            <div class="faq-body">
-              <p>Often yes — but always set expectations per location. Add real speed info later.</p>
-            </div>
-          </details>
-
-          <details class="faq-item">
-            <summary>How do I contact you?</summary>
-            <div class="faq-body">
-              <p>Use the form below — it opens your email app (no backend needed).</p>
-            </div>
-          </details>
-        </div>
-      </div>
-    </section>
-
-    <!-- CONTACT -->
-    <section class="section" id="contact">
-      <div class="container">
-        <div class="section-head">
-          <h2>Contact</h2>
-          <p class="muted">This form is static and uses <code>mailto:</code>. Replace the email with yours.</p>
+          <p class="muted small" style="margin-top:12px;">
+            Want this to go to WhatsApp instantly? Tell me your number format and I’ll wire it up.
+          </p>
         </div>
 
         <div class="card">
+          <h2>Location</h2>
+          <p class="muted">
+            Teaching mainly at <strong>Playa Bonita</strong> in <strong>Las Terrenas</strong>, Samaná.
+          </p>
+          <ul class="list">
+            <li><strong>Meeting point:</strong> Playa Bonita (Las Terrenas)</li>
+            <li><strong>Lesson type:</strong> private or small group</li>
+            <li><strong>Other spot:</strong> Cabarete (by request)</li>
+          </ul>
+          <p class="muted small" style="margin-top:14px;">
+            Add a map embed later (Google Maps / Apple Maps).
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container grid-2">
+        <div class="card">
+          <h2>What you’ll learn</h2>
+          <ul class="list">
+            <li>Ocean safety + surf etiquette</li>
+            <li>Paddling, pop-up, and balance basics</li>
+            <li>Reading waves and choosing the right ones</li>
+            <li>Technique improvements for intermediate/advanced</li>
+          </ul>
+        </div>
+
+        <div class="video">
+          <div>
+            <h2 style="margin:0 0 8px; font-family: Anton, Impact, sans-serif;">Landing video (later)</h2>
+            <p class="muted" style="margin:0;">
+              This is a placeholder. When you’re ready, you can drop in a video file or YouTube/Vimeo embed here.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="contact">
+      <div class="container">
+        <div class="card">
+          <h2>Book a lesson</h2>
+          <p class="muted">For now this can open your email app. Later we can connect real bookings.</p>
+
           <form id="contactForm">
-            <label class="field">
-              <span class="field-label">Name</span>
-              <input required name="name" type="text" placeholder="Your name" />
+            <div class="grid-2">
+              <label>
+                <div class="muted small" style="margin-bottom:6px;">Name</div>
+                <input required name="name" type="text" placeholder="Your name" style="width:100%; padding:12px; border-radius:14px; border:1px solid rgba(242,230,207,0.18); background:rgba(0,0,0,0.35); color:var(--text);" />
+              </label>
+
+              <label>
+                <div class="muted small" style="margin-bottom:6px;">Email</div>
+                <input required name="email" type="email" placeholder="you@email.com" style="width:100%; padding:12px; border-radius:14px; border:1px solid rgba(242,230,207,0.18); background:rgba(0,0,0,0.35); color:var(--text);" />
+              </label>
+            </div>
+
+            <label style="display:block; margin-top:12px;">
+              <div class="muted small" style="margin-bottom:6px;">Message</div>
+              <textarea required name="message" rows="5" placeholder="Your level, preferred date/time, and group size."
+                style="width:100%; padding:12px; border-radius:14px; border:1px solid rgba(242,230,207,0.18); background:rgba(0,0,0,0.35); color:var(--text);"></textarea>
             </label>
 
-            <label class="field">
-              <span class="field-label">Email</span>
-              <input required name="email" type="email" placeholder="you@email.com" />
-            </label>
+            <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:12px;">
+              <button class="btn btn-primary" type="submit">Send inquiry</button>
+              <a class="btn" href="./about.html">About Cristian</a>
+            </div>
 
-            <label class="field">
-              <span class="field-label">Interested in</span>
-              <select name="camp" id="campSelect">
-                <option value="">Select a camp (optional)</option>
-                <option>Portugal</option>
-                <option>Bali</option>
-                <option>Costa Rica</option>
-              </select>
-            </label>
-
-            <label class="field">
-              <span class="field-label">Message</span>
-              <textarea required name="message" rows="5" placeholder="Your dates + your level + what you want to do."></textarea>
-            </label>
-
-            <button class="btn btn-primary" type="submit">Send</button>
-            <p class="muted small mt-12" id="formHint"></p>
+            <p class="muted small" id="formHint" style="margin-top:10px;"></p>
           </form>
         </div>
       </div>
     </section>
   </main>
 
-  <footer class="site-footer">
-    <div class="container footer-grid">
+  <footer>
+    <div class="container foot">
       <div>
-        <div class="brand footer-brand">
-          <span class="brand-mark" aria-hidden="true">🌊</span>
-          <span class="brand-name">WaveCamp</span>
-        </div>
-        <p class="muted small">© <span id="year"></span> WaveCamp</p>
+        <div class="muted small">© <span id="year"></span> Peninsula Surf School</div>
+        <div class="muted small">Playa Bonita, Las Terrenas • Samaná, Dominican Republic</div>
       </div>
-
-      <div class="footer-links">
-        <a href="#camps">Camps</a>
-        <a href="#about">About</a>
-        <a href="#faq">FAQ</a>
-      </div>
-
-      <div class="footer-mini">
-        <a class="muted link" href="#top" onclick="window.scrollTo({top:0, behavior:'smooth'})">Back to top ↑</a>
+      <div class="muted small">
+        <a class="link" href="./about.html">About</a>
+        <span style="opacity:.5;"> • </span>
+        <a class="link" href="#contact">Book</a>
       </div>
     </div>
   </footer>
 
   <script>
-    (function () {
-      // Footer year
-      var yearEl = document.getElementById("year");
-      if (yearEl) yearEl.textContent = String(new Date().getFullYear());
+    // Year
+    document.getElementById("year").textContent = new Date().getFullYear();
 
-      // Mobile nav toggle
-      var navToggle = document.getElementById("navToggle");
-      var siteNav = document.getElementById("siteNav");
+    // Form -> mailto (replace email)
+    document.getElementById("contactForm").addEventListener("submit", function(e){
+      e.preventDefault();
+      const form = new FormData(e.target);
+      const name = form.get("name");
+      const email = form.get("email");
+      const message = form.get("message");
 
-      if (navToggle && siteNav) {
-        navToggle.addEventListener("click", function () {
-          var isOpen = siteNav.classList.toggle("is-open");
-          navToggle.setAttribute("aria-expanded", String(isOpen));
-        });
+      // CHANGE THIS to your real booking email:
+      const to = "hello@yourdomain.com";
 
-        siteNav.addEventListener("click", function (e) {
-          var t = e.target;
-          if (t && t.tagName === "A") {
-            siteNav.classList.remove("is-open");
-            navToggle.setAttribute("aria-expanded", "false");
-          }
-        });
-      }
+      const subject = encodeURIComponent("Peninsula Surf Lesson Inquiry");
+      const body = encodeURIComponent(
+        `Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}\n`
+      );
 
-      // Clicking “Ask about X” sets the camp dropdown
-      var campSelect = document.getElementById("campSelect");
-      document.querySelectorAll("[data-camp]").forEach(function (a) {
-        a.addEventListener("click", function () {
-          if (campSelect) campSelect.value = a.getAttribute("data-camp") || "";
-        });
-      });
-
-      // Contact form -> mailto
-      var contactForm = document.getElementById("contactForm");
-      var hint = document.getElementById("formHint");
-
-      if (contactForm) {
-        contactForm.addEventListener("submit", function (e) {
-          e.preventDefault();
-
-          var formData = new FormData(contactForm);
-          var name = String(formData.get("name") || "");
-          var email = String(formData.get("email") || "");
-          var camp = String(formData.get("camp") || "");
-          var message = String(formData.get("message") || "");
-
-          // CHANGE THIS:
-          var to = "hello@yourdomain.com";
-
-          var subject = encodeURIComponent("WaveCamp inquiry" + (camp ? " — " + camp : ""));
-          var body = encodeURIComponent(
-            "Name: " + name + "\n" +
-            "Email: " + email + "\n" +
-            (camp ? ("Camp: " + camp + "\n") : "") +
-            "\nMessage:\n" + message + "\n"
-          );
-
-          if (hint) hint.textContent = "Opening your email app…";
-
-          window.location.href = "mailto:" + to + "?subject=" + subject + "&body=" + body;
-        });
-      }
-    })();
+      document.getElementById("formHint").textContent = "Opening your email app…";
+      window.location.href = `mailto:${to}?subject=${subject}&body=${body}`;
+    });
   </script>
 </body>
 </html>
