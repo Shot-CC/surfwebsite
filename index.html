@@ -1,349 +1,269 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Peninsula Surf School — Samaná, Dominican Republic</title>
-  <meta name="description" content="Surf lessons in Playa Bonita, Las Terrenas (Samaná, Dominican Republic). Book a lesson with Peninsula Surf School." />
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <!-- Optional: pulls a bold condensed font similar to your logo vibe -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+<title>Peninsula Surf School — Playa Bonita, Dominican Republic</title>
+<meta name="description" content="Private surf lessons in Playa Bonita, Las Terrenas, Samaná. Learn with Peninsula Surf School." />
 
-  <style>
-    :root{
-      /* Palette inspired by your logo */
-      --bg: #0b0b0b;
-      --panel: rgba(255,255,255,0.06);
-      --line: rgba(255,255,255,0.14);
-      --text: #f2e6cf;        /* creamy */
-      --muted: rgba(242,230,207,0.72);
-      --olive: #3f4a2f;       /* olive green */
-      --olive2: rgba(63,74,47,0.35);
-      --radius: 18px;
-      --max: 1040px;
-      --pad: 20px;
-      --shadow: 0 16px 40px rgba(0,0,0,0.45);
-    }
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
 
-    *{ box-sizing: border-box; }
-    html,body{ height: 100%; }
-    body{
-      margin: 0;
-      color: var(--text);
-      background:
-        radial-gradient(900px 500px at 30% -10%, rgba(63,74,47,0.55), transparent 60%),
-        linear-gradient(180deg, #070707 0%, #0b0b0b 40%, #070707 100%);
-      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-    }
+<style>
+:root{
+  --bg:#0b0b0b;
+  --text:#f2e6cf;
+  --muted:rgba(242,230,207,0.75);
+  --olive:#3f4a2f;
+  --line:rgba(242,230,207,0.18);
+  --radius:18px;
+  --max:1100px;
+  --pad:20px;
+}
 
-    a{ color: inherit; text-decoration: none; }
-    .container{ width: min(var(--max), calc(100% - 2*var(--pad))); margin: 0 auto; }
+*{box-sizing:border-box;}
+body{
+  margin:0;
+  background:#0b0b0b;
+  color:var(--text);
+  font-family:Inter,system-ui;
+}
+a{color:inherit;text-decoration:none;}
+.container{width:min(var(--max),calc(100% - 2*var(--pad)));margin:0 auto;}
 
-    /* Header */
-    header{
-      position: sticky; top: 0; z-index: 10;
-      backdrop-filter: blur(10px);
-      background: rgba(11,11,11,0.65);
-      border-bottom: 1px solid var(--line);
-    }
-    .nav{
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 14px 0;
-      gap: 14px;
-    }
-    .brand{
-      display: inline-flex; align-items: center; gap: 12px;
-      font-weight: 800;
-      letter-spacing: 0.2px;
-    }
-    .logo{
-      width: 44px; height: 44px;
-      border-radius: 14px;
-      object-fit: cover;
-      border: 1px solid var(--line);
-      background: rgba(255,255,255,0.06);
-    }
-    nav a{
-      color: var(--muted);
-      padding: 8px 10px;
-      border-radius: 12px;
-    }
-    nav a:hover{ color: var(--text); background: rgba(255,255,255,0.06); }
-    .cta{
-      border: 1px solid rgba(242,230,207,0.25);
-      background: rgba(63,74,47,0.25);
-      color: var(--text);
-    }
+header{
+  position:fixed;
+  top:0;
+  width:100%;
+  backdrop-filter:blur(10px);
+  background:rgba(0,0,0,0.45);
+  border-bottom:1px solid var(--line);
+  z-index:10;
+}
+.nav{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:14px 0;
+}
+.brand{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  font-weight:700;
+}
+.logo{
+  width:44px;
+  height:44px;
+  border-radius:12px;
+  object-fit:cover;
+  border:1px solid var(--line);
+}
+nav a{
+  margin-left:20px;
+  color:var(--muted);
+}
+nav a:hover{color:var(--text);}
 
-    /* Layout blocks */
-    .hero{ padding: 64px 0 24px; }
-    .hero-grid{
-      display: grid;
-      grid-template-columns: 1.1fr 0.9fr;
-      gap: 18px;
-      align-items: stretch;
-    }
-    @media (max-width: 880px){ .hero-grid{ grid-template-columns: 1fr; } }
+.hero-video-section{
+  position:relative;
+  height:100vh;
+  min-height:650px;
+  overflow:hidden;
+  display:flex;
+  align-items:center;
+}
 
-    .kicker{
-      margin: 0 0 10px;
-      color: rgba(242,230,207,0.78);
-      letter-spacing: 0.4px;
-      text-transform: uppercase;
-      font-size: 0.9rem;
-    }
-    h1{
-      margin: 0 0 10px;
-      font-family: Anton, Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
-      font-size: clamp(2.2rem, 5vw, 3.4rem);
-      letter-spacing: 0.5px;
-      line-height: 1.02;
-    }
-    .lead{
-      margin: 0 0 18px;
-      color: rgba(242,230,207,0.8);
-      line-height: 1.65;
-      font-size: 1.05rem;
-      max-width: 58ch;
-    }
+.video-background{
+  position:absolute;
+  inset:0;
+  z-index:0;
+}
+.video-background iframe{
+  position:absolute;
+  top:50%;
+  left:50%;
+  width:177.77vh;
+  height:100vh;
+  transform:translate(-50%, -50%);
+  pointer-events:none;
+}
 
-    .btns{ display: flex; flex-wrap: wrap; gap: 10px; margin-top: 14px; }
-    .btn{
-      display: inline-flex; align-items: center; justify-content: center;
-      padding: 12px 14px;
-      border-radius: 14px;
-      border: 1px solid var(--line);
-      background: rgba(255,255,255,0.06);
-      font-weight: 700;
-    }
-    .btn:hover{ background: rgba(255,255,255,0.10); }
-    .btn-primary{
-      background: rgba(63,74,47,0.35);
-      border-color: rgba(63,74,47,0.75);
-    }
+.video-overlay{
+  position:absolute;
+  inset:0;
+  background:linear-gradient(180deg, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.75) 70%);
+  z-index:1;
+}
 
-    .card{
-      border-radius: var(--radius);
-      border: 1px solid var(--line);
-      background: var(--panel);
-      box-shadow: var(--shadow);
-      padding: 18px;
-    }
-    .card h2{
-      margin: 0 0 10px;
-      font-family: Anton, Impact, sans-serif;
-      letter-spacing: 0.4px;
-      font-size: 1.4rem;
-    }
-    .muted{ color: var(--muted); }
-    .list{ margin: 12px 0 0 18px; padding: 0; }
-    .list li{ margin: 8px 0; line-height: 1.55; }
+.hero-content{
+  position:relative;
+  z-index:2;
+  max-width:800px;
+}
 
-    .section{ padding: 24px 0 50px; }
-    .grid-2{
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 14px;
-    }
-    @media (max-width: 880px){ .grid-2{ grid-template-columns: 1fr; } }
+.kicker{
+  text-transform:uppercase;
+  letter-spacing:1px;
+  color:var(--muted);
+  font-size:0.9rem;
+}
 
-    /* Video placeholder */
-    .video{
-      border-radius: var(--radius);
-      border: 1px dashed rgba(242,230,207,0.28);
-      background: rgba(63,74,47,0.10);
-      min-height: 240px;
-      display: grid;
-      place-items: center;
-      padding: 18px;
-      text-align: center;
-    }
+h1{
+  font-family:Anton,Impact,sans-serif;
+  font-size:clamp(2.5rem,5vw,4rem);
+  margin:10px 0;
+  letter-spacing:1px;
+}
 
-    footer{
-      border-top: 1px solid var(--line);
-      padding: 28px 0;
-      background: rgba(0,0,0,0.35);
-    }
-    .foot{
-      display: flex;
-      align-items: flex-start;
-      justify-content: space-between;
-      gap: 16px;
-      flex-wrap: wrap;
-    }
-    .small{ font-size: 0.92rem; }
-    .pill{
-      display:inline-flex;
-      border: 1px solid rgba(242,230,207,0.18);
-      background: rgba(255,255,255,0.04);
-      padding: 8px 10px;
-      border-radius: 999px;
-      margin-right: 8px;
-      margin-top: 8px;
-      color: rgba(242,230,207,0.85);
-      font-size: 0.92rem;
-    }
-  </style>
+.lead{
+  font-size:1.1rem;
+  line-height:1.6;
+  color:rgba(242,230,207,0.85);
+}
+
+.btns{margin-top:20px;display:flex;gap:12px;flex-wrap:wrap;}
+
+.btn{
+  padding:14px 18px;
+  border-radius:14px;
+  border:1px solid var(--line);
+  background:rgba(255,255,255,0.06);
+  font-weight:600;
+}
+.btn:hover{background:rgba(255,255,255,0.12);}
+
+.btn-primary{
+  background:rgba(63,74,47,0.45);
+  border-color:rgba(63,74,47,0.9);
+}
+
+.section{
+  padding:90px 0;
+}
+.card{
+  background:rgba(255,255,255,0.05);
+  border:1px solid var(--line);
+  border-radius:var(--radius);
+  padding:24px;
+}
+.card h2{
+  font-family:Anton;
+  letter-spacing:1px;
+  margin-top:0;
+}
+
+footer{
+  border-top:1px solid var(--line);
+  padding:30px 0;
+  text-align:center;
+  background:#080808;
+  color:var(--muted);
+  font-size:0.9rem;
+}
+
+@media(max-width:900px){
+  .video-background iframe{
+    width:100vw;
+    height:56.25vw;
+  }
+}
+</style>
 </head>
 
 <body>
-  <header>
-    <div class="container nav">
-      <a class="brand" href="./index.html" aria-label="Peninsula home">
-        <img class="logo" src="./assets/logo.jpg" alt="Peninsula Surf School logo">
-        <span>Peninsula</span>
-      </a>
 
-      <nav>
-        <a href="./about.html">About</a>
-        <a class="cta" href="#book">Book</a>
-      </nav>
+<header>
+  <div class="container nav">
+    <div class="brand">
+      <img src="./assets/logo.jpg" class="logo" alt="Peninsula Logo">
+      <span>Peninsula</span>
     </div>
-  </header>
+    <nav>
+      <a href="./about.html">About</a>
+      <a href="#contact">Book</a>
+    </nav>
+  </div>
+</header>
 
-  <main>
-    <section class="hero">
-      <div class="container hero-grid">
-        <div>
-          <p class="kicker">Surf Lessons • Playa Bonita • Las Terrenas</p>
-          <h1>Peninsula Surf School</h1>
-          <p class="lead">
-            Private and small-group surf lessons in <strong>Playa Bonita</strong>, Las Terrenas (Samaná, Dominican Republic).
-            Clean coaching, safe progression, and a good time in the water.
-          </p>
+<section class="hero-video-section">
 
-          <div class="pill">Beginner friendly</div>
-          <div class="pill">All levels</div>
-          <div class="pill">Las Terrenas</div>
-          <div class="pill">Also Cabarete</div>
+  <div class="video-background">
+    <iframe
+      src="https://www.youtube.com/embed/NQyanL1QEPw?autoplay=1&mute=1&loop=1&playlist=NQyanL1QEPw&controls=0&showinfo=0&modestbranding=1&rel=0"
+      frameborder="0"
+      allow="autoplay; fullscreen"
+      allowfullscreen>
+    </iframe>
+  </div>
 
-          <div class="btns" id="book">
-            <!-- Replace the # with your real booking link later (Calendly / WhatsApp / Google Form) -->
-            <a class="btn btn-primary" href="#contact">Book a lesson</a>
-            <a class="btn" href="./about.html">Meet the instructor</a>
-          </div>
+  <div class="video-overlay"></div>
 
-          <p class="muted small" style="margin-top:12px;">
-            Want this to go to WhatsApp instantly? Tell me your number format and I’ll wire it up.
-          </p>
-        </div>
-
-        <div class="card">
-          <h2>Location</h2>
-          <p class="muted">
-            Teaching mainly at <strong>Playa Bonita</strong> in <strong>Las Terrenas</strong>, Samaná.
-          </p>
-          <ul class="list">
-            <li><strong>Meeting point:</strong> Playa Bonita (Las Terrenas)</li>
-            <li><strong>Lesson type:</strong> private or small group</li>
-            <li><strong>Other spot:</strong> Cabarete (by request)</li>
-          </ul>
-          <p class="muted small" style="margin-top:14px;">
-            Add a map embed later (Google Maps / Apple Maps).
-          </p>
-        </div>
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="container grid-2">
-        <div class="card">
-          <h2>What you’ll learn</h2>
-          <ul class="list">
-            <li>Ocean safety + surf etiquette</li>
-            <li>Paddling, pop-up, and balance basics</li>
-            <li>Reading waves and choosing the right ones</li>
-            <li>Technique improvements for intermediate/advanced</li>
-          </ul>
-        </div>
-
-        <div class="video">
-          <div>
-            <h2 style="margin:0 0 8px; font-family: Anton, Impact, sans-serif;">Landing video (later)</h2>
-            <p class="muted" style="margin:0;">
-              This is a placeholder. When you’re ready, you can drop in a video file or YouTube/Vimeo embed here.
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="contact">
-      <div class="container">
-        <div class="card">
-          <h2>Book a lesson</h2>
-          <p class="muted">For now this can open your email app. Later we can connect real bookings.</p>
-
-          <form id="contactForm">
-            <div class="grid-2">
-              <label>
-                <div class="muted small" style="margin-bottom:6px;">Name</div>
-                <input required name="name" type="text" placeholder="Your name" style="width:100%; padding:12px; border-radius:14px; border:1px solid rgba(242,230,207,0.18); background:rgba(0,0,0,0.35); color:var(--text);" />
-              </label>
-
-              <label>
-                <div class="muted small" style="margin-bottom:6px;">Email</div>
-                <input required name="email" type="email" placeholder="you@email.com" style="width:100%; padding:12px; border-radius:14px; border:1px solid rgba(242,230,207,0.18); background:rgba(0,0,0,0.35); color:var(--text);" />
-              </label>
-            </div>
-
-            <label style="display:block; margin-top:12px;">
-              <div class="muted small" style="margin-bottom:6px;">Message</div>
-              <textarea required name="message" rows="5" placeholder="Your level, preferred date/time, and group size."
-                style="width:100%; padding:12px; border-radius:14px; border:1px solid rgba(242,230,207,0.18); background:rgba(0,0,0,0.35); color:var(--text);"></textarea>
-            </label>
-
-            <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:12px;">
-              <button class="btn btn-primary" type="submit">Send inquiry</button>
-              <a class="btn" href="./about.html">About Cristian</a>
-            </div>
-
-            <p class="muted small" id="formHint" style="margin-top:10px;"></p>
-          </form>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <footer>
-    <div class="container foot">
-      <div>
-        <div class="muted small">© <span id="year"></span> Peninsula Surf School</div>
-        <div class="muted small">Playa Bonita, Las Terrenas • Samaná, Dominican Republic</div>
-      </div>
-      <div class="muted small">
-        <a class="link" href="./about.html">About</a>
-        <span style="opacity:.5;"> • </span>
-        <a class="link" href="#contact">Book</a>
-      </div>
+  <div class="hero-content container">
+    <p class="kicker">Playa Bonita • Las Terrenas • Dominican Republic</p>
+    <h1>Peninsula Surf School</h1>
+    <p class="lead">
+      Private and small-group surf lessons in Samaná.
+      Safe progression. Clean coaching. Good energy.
+    </p>
+    <div class="btns">
+      <a class="btn btn-primary" href="#contact">Book a Lesson</a>
+      <a class="btn" href="./about.html">Meet Cristian</a>
     </div>
-  </footer>
+  </div>
 
-  <script>
-    // Year
-    document.getElementById("year").textContent = new Date().getFullYear();
+</section>
 
-    // Form -> mailto (replace email)
-    document.getElementById("contactForm").addEventListener("submit", function(e){
-      e.preventDefault();
-      const form = new FormData(e.target);
-      const name = form.get("name");
-      const email = form.get("email");
-      const message = form.get("message");
+<section class="section">
+  <div class="container">
+    <div class="card">
+      <h2>Location</h2>
+      <p>Teaching at <strong>Playa Bonita</strong>, Las Terrenas (Samaná). Also available in Cabarete by request.</p>
+    </div>
+  </div>
+</section>
 
-      // CHANGE THIS to your real booking email:
-      const to = "hello@yourdomain.com";
+<section class="section" id="contact">
+  <div class="container">
+    <div class="card">
+      <h2>Book a Lesson</h2>
+      <p>Email to inquire about availability.</p>
 
-      const subject = encodeURIComponent("Peninsula Surf Lesson Inquiry");
-      const body = encodeURIComponent(
-        `Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}\n`
-      );
+      <form id="contactForm">
+        <input required name="name" placeholder="Your name" style="width:100%;padding:14px;margin-bottom:12px;border-radius:12px;border:1px solid var(--line);background:#111;color:var(--text);" />
+        <input required name="email" placeholder="Your email" style="width:100%;padding:14px;margin-bottom:12px;border-radius:12px;border:1px solid var(--line);background:#111;color:var(--text);" />
+        <textarea required name="message" rows="4" placeholder="Your level, dates, group size"
+          style="width:100%;padding:14px;border-radius:12px;border:1px solid var(--line);background:#111;color:var(--text);"></textarea>
 
-      document.getElementById("formHint").textContent = "Opening your email app…";
-      window.location.href = `mailto:${to}?subject=${subject}&body=${body}`;
-    });
-  </script>
+        <button class="btn btn-primary" style="margin-top:12px;">Send Inquiry</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<footer>
+  © <span id="year"></span> Peninsula Surf School • Playa Bonita, Dominican Republic
+</footer>
+
+<script>
+document.getElementById("year").textContent = new Date().getFullYear();
+
+document.getElementById("contactForm").addEventListener("submit", function(e){
+  e.preventDefault();
+  const form = new FormData(e.target);
+  const name = form.get("name");
+  const email = form.get("email");
+  const message = form.get("message");
+
+  const to = "hello@yourdomain.com"; // change this
+  const subject = encodeURIComponent("Peninsula Surf Lesson Inquiry");
+  const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\n${message}`);
+
+  window.location.href = `mailto:${to}?subject=${subject}&body=${body}`;
+});
+</script>
+
 </body>
 </html>
