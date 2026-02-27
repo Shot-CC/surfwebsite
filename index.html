@@ -4,12 +4,8 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-<title>Peninsula Surf School — Playa Bonita, Las Terrenas</title>
-<meta name="description" content="Peninsula Surf School — surf lessons at Playa Bonita, Las Terrenas (Samaná, Dominican Republic)." />
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+<title>Peninsula Surf School</title>
+<meta name="description" content="Peninsula Surf School — surf lessons at Playa Bonita, Las Terrenas, Dominican Republic." />
 
 <style>
 :root{
@@ -49,32 +45,49 @@ header{
   align-items:center;
   padding:14px 0;
 }
-.brand{
-  display:flex;
-  align-items:center;
-  gap:12px;
-  font-weight:700;
-}
 
-/* Small header logo */
 .logo{
   width:48px;
   height:auto;
-  object-fit:contain;
 }
 
-nav a{
-  margin-left:22px;
-  color:var(--muted);
+/* Language Switcher */
+.lang-switch{
+  position:relative;
+}
+
+.lang-btn{
+  padding:8px 14px;
+  border-radius:12px;
+  border:1px solid var(--line);
+  background:rgba(255,255,255,0.06);
+  cursor:pointer;
   font-weight:600;
 }
-nav a:hover{color:var(--text);}
 
-/* HERO VIDEO */
+.lang-menu{
+  position:absolute;
+  right:0;
+  top:42px;
+  background:#111;
+  border:1px solid var(--line);
+  border-radius:12px;
+  display:none;
+  overflow:hidden;
+}
+
+.lang-menu div{
+  padding:10px 16px;
+  cursor:pointer;
+}
+.lang-menu div:hover{
+  background:rgba(255,255,255,0.08);
+}
+
+/* HERO */
 .hero-video{
   position:relative;
   height:100vh;
-  min-height:700px;
   overflow:hidden;
   display:flex;
   align-items:center;
@@ -83,7 +96,6 @@ nav a:hover{color:var(--text);}
 .video-bg{
   position:absolute;
   inset:0;
-  z-index:0;
 }
 .video-bg iframe{
   position:absolute;
@@ -98,99 +110,50 @@ nav a:hover{color:var(--text);}
 .overlay{
   position:absolute;
   inset:0;
-  background:linear-gradient(180deg, rgba(0,0,0,0.35) 0%, rgba(0,0,0,0.65) 75%, rgba(0,0,0,0.85) 100%);
-  z-index:1;
+  background:linear-gradient(180deg, rgba(0,0,0,0.35) 0%, rgba(0,0,0,0.75) 80%);
 }
 
-/* Centered floating logo over video */
 .hero-logo{
   position:absolute;
   inset:0;
-  z-index:2;
   display:flex;
   align-items:center;
   justify-content:center;
-  padding-top:70px;
+  z-index:2;
 }
 
 .hero-logo img{
   width:320px;
   max-width:75vw;
-  height:auto;
+  animation:float 4s ease-in-out infinite;
   filter:drop-shadow(0 20px 50px rgba(0,0,0,0.7));
-  animation:float 4.5s ease-in-out infinite;
 }
 
 @keyframes float{
-  0%{ transform:translateY(0); }
-  50%{ transform:translateY(-10px); }
-  100%{ transform:translateY(0); }
+  0%{transform:translateY(0);}
+  50%{transform:translateY(-10px);}
+  100%{transform:translateY(0);}
 }
 
-/* SECTIONS */
-.section{ padding:96px 0; }
-
+/* SECTION */
+.section{padding:100px 0;}
 .card{
   background:rgba(255,255,255,0.05);
   border:1px solid var(--line);
   border-radius:var(--radius);
   padding:28px;
+  max-width:700px;
+  margin:0 auto;
 }
-
 .card h2{
-  font-family:Anton,Impact,sans-serif;
-  letter-spacing:1px;
-  margin:0 0 8px 0;
+  margin-top:0;
 }
-
-.grid{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:24px;
-}
-@media(max-width:900px){
-  .grid{ grid-template-columns:1fr; }
-  .video-bg iframe{ width:100vw; height:56.25vw; }
-  .hero-logo img{ width:240px; }
-}
-
 footer{
   border-top:1px solid var(--line);
   padding:40px 0;
   text-align:center;
-  background:#080808;
   color:var(--muted);
-  font-size:0.9rem;
 }
-
-input, textarea{
-  width:100%;
-  padding:14px;
-  border-radius:12px;
-  border:1px solid var(--line);
-  background:#111;
-  color:var(--text);
-}
-textarea{ resize:vertical; }
-
-.btn{
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
-  padding:14px 22px;
-  border-radius:14px;
-  border:1px solid var(--line);
-  background:rgba(255,255,255,0.06);
-  font-weight:700;
-  cursor:pointer;
-}
-.btn:hover{ background:rgba(255,255,255,0.12); }
-
-.btn-primary{
-  background:rgba(63,74,47,0.50);
-  border-color:rgba(63,74,47,0.95);
-}
-.btn-primary:hover{ background:rgba(63,74,47,0.80); }
 </style>
 </head>
 
@@ -198,18 +161,20 @@ textarea{ resize:vertical; }
 
 <header>
   <div class="container nav">
-    <a class="brand" href="./index.html">
-      <img src="./assets/logo-word.png" class="logo" alt="Peninsula logo">
-    </a>
-    <nav>
-      <a href="./about.html">About</a>
-      <a href="#contact">Book</a>
-    </nav>
+    <img src="./assets/logo-word.png" class="logo" alt="Peninsula Logo">
+
+    <div class="lang-switch">
+      <div class="lang-btn" onclick="toggleLang()">🌍 EN</div>
+      <div class="lang-menu" id="langMenu">
+        <div onclick="setLang('en')">English</div>
+        <div onclick="setLang('es')">Español</div>
+        <div onclick="setLang('fr')">Français</div>
+      </div>
+    </div>
   </div>
 </header>
 
 <section class="hero-video">
-
   <div class="video-bg">
     <iframe
       src="https://www.youtube.com/embed/NQyanL1QEPw?autoplay=1&mute=1&loop=1&playlist=NQyanL1QEPw&controls=0&modestbranding=1&rel=0"
@@ -218,74 +183,58 @@ textarea{ resize:vertical; }
       allowfullscreen>
     </iframe>
   </div>
-
   <div class="overlay"></div>
-
   <div class="hero-logo">
-    <img src="./assets/logo-word.png" alt="Peninsula Surf School">
+    <img src="./assets/logo-word.png" alt="Peninsula">
   </div>
-
 </section>
 
 <section class="section">
-  <div class="container grid">
-    <div class="card">
-      <h2>Location</h2>
-      <p><strong>Playa Bonita</strong>, Las Terrenas (Samaná). Lessons also available in <strong>Cabarete</strong> by request.</p>
-    </div>
-
-    <div class="card">
-      <h2>Lessons</h2>
-      <p>Private or small-group coaching for all levels — safety, fundamentals, wave reading, and progression.</p>
-    </div>
-  </div>
-</section>
-
-<section class="section" id="contact">
-  <div class="container">
-    <div class="card">
-      <h2>Book a lesson</h2>
-
-      <form id="contactForm">
-        <div style="display:grid; gap:14px; grid-template-columns:1fr 1fr;">
-          <input required name="name" placeholder="Your name" />
-          <input required name="email" type="email" placeholder="Your email" />
-        </div>
-
-        <div style="margin-top:14px;">
-          <textarea required name="message" rows="5" placeholder="Your level, preferred date/time, and group size"></textarea>
-        </div>
-
-        <div style="margin-top:14px;">
-          <button class="btn btn-primary" type="submit">Send inquiry</button>
-        </div>
-
-        <p id="formHint" style="margin:10px 0 0;color:var(--muted);"></p>
-      </form>
-    </div>
+  <div class="card">
+    <h2 id="locationTitle">Location</h2>
+    <p id="locationText">
+      Playa Bonita, Las Terrenas (Samaná). Lessons also available in Cabarete by request.
+    </p>
   </div>
 </section>
 
 <footer>
-  © <span id="year"></span> Peninsula Surf School • Playa Bonita, Dominican Republic
+  © <span id="year"></span> Peninsula Surf School
 </footer>
 
 <script>
 document.getElementById("year").textContent = new Date().getFullYear();
 
-document.getElementById("contactForm").addEventListener("submit", function(e){
-  e.preventDefault();
-  const form = new FormData(e.target);
-  const name = form.get("name");
-  const email = form.get("email");
-  const message = form.get("message");
+function toggleLang(){
+  const menu = document.getElementById("langMenu");
+  menu.style.display = menu.style.display === "block" ? "none" : "block";
+}
 
-  const to = "hello@yourdomain.com"; // change this
-  const subject = encodeURIComponent("Peninsula Surf Lesson Inquiry");
-  const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\n${message}`);
+const translations = {
+  en: {
+    locationTitle: "Location",
+    locationText: "Playa Bonita, Las Terrenas (Samaná). Lessons also available in Cabarete by request."
+  },
+  es: {
+    locationTitle: "Ubicación",
+    locationText: "Playa Bonita, Las Terrenas (Samaná). Clases también disponibles en Cabarete bajo solicitud."
+  },
+  fr: {
+    locationTitle: "Emplacement",
+    locationText: "Playa Bonita, Las Terrenas (Samaná). Cours également disponibles à Cabarete sur demande."
+  }
+};
 
-  window.location.href = `mailto:${to}?subject=${subject}&body=${body}`;
-});
+function setLang(lang){
+  document.getElementById("locationTitle").innerText = translations[lang].locationTitle;
+  document.getElementById("locationText").innerText = translations[lang].locationText;
+
+  document.querySelector(".lang-btn").innerText = 
+    lang === "en" ? "🌍 EN" :
+    lang === "es" ? "🌍 ES" : "🌍 FR";
+
+  document.getElementById("langMenu").style.display = "none";
+}
 </script>
 
 </body>
