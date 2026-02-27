@@ -24,11 +24,13 @@ body{
   margin:0;
   background:#0b0b0b;
   color:var(--text);
-  font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+  font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
 }
 
-a{color:inherit;text-decoration:none;}
-.container{width:min(var(--max),calc(100% - 2*var(--pad)));margin:0 auto;}
+.container{
+  width:min(var(--max),calc(100% - 2*var(--pad)));
+  margin:0 auto;
+}
 
 header{
   position:fixed;
@@ -48,7 +50,7 @@ header{
 
 .logo{ width:48px; }
 
-/* Language switcher */
+/* Language */
 .lang-switch{ position:relative; }
 .lang-btn{
   padding:8px 14px;
@@ -71,7 +73,9 @@ header{
   padding:10px 16px;
   cursor:pointer;
 }
-.lang-menu div:hover{ background:rgba(255,255,255,0.08); }
+.lang-menu div:hover{
+  background:rgba(255,255,255,0.08);
+}
 
 /* HERO */
 .hero{
@@ -117,31 +121,45 @@ header{
 
 /* SECTIONS */
 .section{ padding:100px 0; }
+
 .card{
   background:rgba(255,255,255,0.05);
   border:1px solid var(--line);
   border-radius:var(--radius);
-  padding:28px;
-  max-width:800px;
-  margin:0 auto;
+  padding:32px;
+  max-width:900px;
+  margin:0 auto 40px auto;
 }
+
+h2{
+  margin-top:0;
+  font-size:1.6rem;
+}
+
+p{
+  line-height:1.7;
+  color:var(--muted);
+}
+
 input, textarea{
   width:100%;
   padding:14px;
-  margin-top:10px;
+  margin-top:12px;
   border-radius:12px;
   border:1px solid var(--line);
   background:#111;
   color:var(--text);
 }
-.btn{
-  margin-top:14px;
+
+button{
+  margin-top:16px;
   padding:14px 22px;
   border-radius:14px;
   border:1px solid var(--line);
-  background:rgba(63,74,47,0.5);
-  cursor:pointer;
+  background:rgba(63,74,47,0.6);
+  color:var(--text);
   font-weight:700;
+  cursor:pointer;
 }
 
 footer{
@@ -186,24 +204,34 @@ footer{
 </section>
 
 <section class="section">
+
+  <div class="card">
+    <h2 id="aboutTitle">About Cristian</h2>
+    <p id="aboutText">
+      Cristian Padilla is a passionate local surf instructor based in Las Terrenas. 
+      With years of experience surfing the waves of Playa Bonita and beyond, 
+      he focuses on safe progression, ocean awareness, and helping students build real confidence in the water.
+      Cristian also offers lessons in Cabarete upon request.
+    </p>
+  </div>
+
   <div class="card">
     <h2 id="locationTitle">Location</h2>
     <p id="locationText">
       Playa Bonita, Las Terrenas (Samaná). Lessons also available in Cabarete by request.
     </p>
   </div>
-</section>
 
-<section class="section">
   <div class="card">
     <h2 id="bookTitle">Book a Lesson</h2>
     <form>
       <input placeholder="Your name">
       <input placeholder="Your email">
       <textarea placeholder="Your level, dates, group size"></textarea>
-      <button class="btn">Send Inquiry</button>
+      <button>Send Inquiry</button>
     </form>
   </div>
+
 </section>
 
 <footer>
@@ -220,16 +248,22 @@ function toggleLang(){
 
 const translations = {
   en:{
+    aboutTitle:"About Cristian",
+    aboutText:"Cristian Padilla is a passionate local surf instructor based in Las Terrenas. With years of experience surfing the waves of Playa Bonita and beyond, he focuses on safe progression, ocean awareness, and helping students build real confidence in the water. Cristian also offers lessons in Cabarete upon request.",
     locationTitle:"Location",
     locationText:"Playa Bonita, Las Terrenas (Samaná). Lessons also available in Cabarete by request.",
     bookTitle:"Book a Lesson"
   },
   es:{
+    aboutTitle:"Sobre Cristian",
+    aboutText:"Cristian Padilla es un instructor de surf local apasionado con base en Las Terrenas. Con años de experiencia surfeando en Playa Bonita y otras playas, se enfoca en la progresión segura, la conciencia del océano y en ayudar a sus estudiantes a ganar verdadera confianza en el agua. También ofrece clases en Cabarete bajo solicitud.",
     locationTitle:"Ubicación",
     locationText:"Playa Bonita, Las Terrenas (Samaná). Clases también disponibles en Cabarete bajo solicitud.",
     bookTitle:"Reservar una Clase"
   },
   fr:{
+    aboutTitle:"À propos de Cristian",
+    aboutText:"Cristian Padilla est un instructeur de surf local passionné basé à Las Terrenas. Avec des années d’expérience sur les vagues de Playa Bonita et ailleurs, il se concentre sur une progression sûre, la compréhension de l’océan et la confiance dans l’eau. Des cours sont également disponibles à Cabarete sur demande.",
     locationTitle:"Emplacement",
     locationText:"Playa Bonita, Las Terrenas (Samaná). Cours également disponibles à Cabarete sur demande.",
     bookTitle:"Réserver une Leçon"
@@ -237,6 +271,8 @@ const translations = {
 };
 
 function setLang(lang){
+  document.getElementById("aboutTitle").innerText = translations[lang].aboutTitle;
+  document.getElementById("aboutText").innerText = translations[lang].aboutText;
   document.getElementById("locationTitle").innerText = translations[lang].locationTitle;
   document.getElementById("locationText").innerText = translations[lang].locationText;
   document.getElementById("bookTitle").innerText = translations[lang].bookTitle;
