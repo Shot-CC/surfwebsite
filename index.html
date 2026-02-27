@@ -1,289 +1,576 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-<title>Peninsula Surf School</title>
-<meta name="description" content="Peninsula Surf School — surf lessons at Playa Bonita, Las Terrenas, Dominican Republic." />
+  <title>Peninsula Surf School</title>
+  <meta name="description" content="Peninsula Surf School — surf lessons at Playa Bonita, Las Terrenas, Dominican Republic." />
 
-<style>
-:root{
-  --bg:#0b0b0b;
-  --text:#f2e6cf;
-  --muted:rgba(242,230,207,0.75);
-  --olive:#3f4a2f;
-  --line:rgba(242,230,207,0.18);
-  --radius:18px;
-  --max:1100px;
-  --pad:20px;
-}
+  <style>
+    :root{
+      --bg:#0b0b0b;
+      --text:#f2e6cf;
+      --muted:rgba(242,230,207,0.78);
+      --line:rgba(242,230,207,0.18);
+      --olive:#3f4a2f;
+      --radius:18px;
+      --max:1100px;
+      --pad:20px;
+      --shadow: 0 18px 50px rgba(0,0,0,0.55);
+    }
 
-*{box-sizing:border-box;}
-body{
-  margin:0;
-  background:#0b0b0b;
-  color:var(--text);
-  font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
-}
+    *{ box-sizing:border-box; }
+    html,body{ height:100%; }
+    body{
+      margin:0;
+      background:var(--bg);
+      color:var(--text);
+      font-family: system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+    }
 
-.container{
-  width:min(var(--max),calc(100% - 2*var(--pad)));
-  margin:0 auto;
-}
+    a{ color:inherit; text-decoration:none; }
+    .container{
+      width:min(var(--max), calc(100% - 2*var(--pad)));
+      margin:0 auto;
+    }
 
-header{
-  position:fixed;
-  top:0;
-  width:100%;
-  backdrop-filter:blur(10px);
-  background:rgba(0,0,0,0.45);
-  border-bottom:1px solid var(--line);
-  z-index:100;
-}
-.nav{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  padding:14px 0;
-}
+    /* Header */
+    header{
+      position:fixed;
+      top:0; left:0; right:0;
+      z-index:100;
+      backdrop-filter: blur(10px);
+      background: rgba(0,0,0,0.45);
+      border-bottom: 1px solid var(--line);
+    }
+    .nav{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      padding:14px 0;
+      gap:14px;
+    }
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      min-width: 120px;
+    }
+    .brand img{
+      width:52px;
+      height:auto;
+      display:block;
+      object-fit:contain;
+      filter: drop-shadow(0 10px 25px rgba(0,0,0,0.45));
+    }
 
-.logo{ width:48px; }
+    .nav-right{
+      display:flex;
+      align-items:center;
+      gap:10px;
+    }
 
-/* Language */
-.lang-switch{ position:relative; }
-.lang-btn{
-  padding:8px 14px;
-  border-radius:12px;
-  border:1px solid var(--line);
-  background:rgba(255,255,255,0.06);
-  cursor:pointer;
-  font-weight:600;
-}
-.lang-menu{
-  position:absolute;
-  right:0;
-  top:42px;
-  background:#111;
-  border:1px solid var(--line);
-  border-radius:12px;
-  display:none;
-}
-.lang-menu div{
-  padding:10px 16px;
-  cursor:pointer;
-}
-.lang-menu div:hover{
-  background:rgba(255,255,255,0.08);
-}
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      padding:10px 14px;
+      border-radius:14px;
+      border:1px solid var(--line);
+      background: rgba(255,255,255,0.06);
+      color: var(--text);
+      font-weight:700;
+      cursor:pointer;
+      white-space:nowrap;
+      transition: background .15s ease;
+    }
+    .btn:hover{ background: rgba(255,255,255,0.12); }
+    .btn-primary{
+      background: rgba(63,74,47,0.55);
+      border-color: rgba(63,74,47,0.95);
+    }
+    .btn-primary:hover{ background: rgba(63,74,47,0.8); }
 
-/* HERO */
-.hero{
-  position:relative;
-  height:100vh;
-  overflow:hidden;
-}
-.video-bg{
-  position:absolute;
-  inset:0;
-}
-.video-bg iframe{
-  position:absolute;
-  top:50%;
-  left:50%;
-  width:177.77vh;
-  height:100vh;
-  transform:translate(-50%, -50%);
-  pointer-events:none;
-}
-.overlay{
-  position:absolute;
-  inset:0;
-  background:linear-gradient(180deg, rgba(0,0,0,0.35) 0%, rgba(0,0,0,0.75) 80%);
-}
-.hero-logo{
-  position:absolute;
-  inset:0;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-}
-.hero-logo img{
-  width:320px;
-  max-width:75vw;
-  animation:float 4s ease-in-out infinite;
-}
-@keyframes float{
-  0%{transform:translateY(0);}
-  50%{transform:translateY(-10px);}
-  100%{transform:translateY(0);}
-}
+    /* Language dropdown */
+    .lang{
+      position:relative;
+    }
+    .lang-menu{
+      position:absolute;
+      right:0;
+      top:46px;
+      min-width: 160px;
+      background:#111;
+      border:1px solid var(--line);
+      border-radius:14px;
+      overflow:hidden;
+      display:none;
+      box-shadow: var(--shadow);
+    }
+    .lang-item{
+      padding:10px 14px;
+      cursor:pointer;
+      color: var(--text);
+      font-weight:600;
+      background: transparent;
+    }
+    .lang-item:hover{
+      background: rgba(255,255,255,0.08);
+    }
 
-/* SECTIONS */
-.section{ padding:100px 0; }
+    /* Hero video */
+    .hero{
+      position:relative;
+      height:100vh;
+      min-height:700px;
+      overflow:hidden;
+    }
+    .video-bg{
+      position:absolute;
+      inset:0;
+      z-index:0;
+    }
+    .video-bg iframe{
+      position:absolute;
+      top:50%;
+      left:50%;
+      width:177.77vh;   /* 16:9 crop */
+      height:100vh;
+      transform:translate(-50%, -50%);
+      pointer-events:none;
+    }
+    .overlay{
+      position:absolute;
+      inset:0;
+      z-index:1;
+      background: linear-gradient(180deg, rgba(0,0,0,0.35) 0%, rgba(0,0,0,0.72) 80%, rgba(0,0,0,0.88) 100%);
+    }
+    .hero-logo{
+      position:absolute;
+      inset:0;
+      z-index:2;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding-top: 70px; /* compensate for header */
+    }
+    .hero-logo img{
+      width:320px;
+      max-width:75vw;
+      height:auto;
+      filter: drop-shadow(0 20px 50px rgba(0,0,0,0.75));
+      animation: float 4.5s ease-in-out infinite;
+    }
+    @keyframes float{
+      0%{ transform: translateY(0); }
+      50%{ transform: translateY(-10px); }
+      100%{ transform: translateY(0); }
+    }
 
-.card{
-  background:rgba(255,255,255,0.05);
-  border:1px solid var(--line);
-  border-radius:var(--radius);
-  padding:32px;
-  max-width:900px;
-  margin:0 auto 40px auto;
-}
+    /* Sections */
+    .section{
+      padding: 96px 0;
+    }
+    .page-title{
+      font-size: clamp(2.4rem, 5vw, 4.2rem);
+      margin: 0 0 10px;
+      font-weight: 900;
+      letter-spacing: -0.6px;
+    }
+    .lead{
+      color: var(--muted);
+      line-height: 1.7;
+      font-size: 1.06rem;
+      max-width: 80ch;
+      margin: 0;
+    }
 
-h2{
-  margin-top:0;
-  font-size:1.6rem;
-}
+    .cards-2{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 22px;
+      margin-top: 22px;
+    }
+    @media (max-width: 900px){
+      .cards-2{ grid-template-columns: 1fr; }
+      .video-bg iframe{ width:100vw; height:56.25vw; }
+      .hero-logo img{ width:240px; }
+      .nav{ gap:10px; }
+      .btn{ padding:10px 12px; border-radius:12px; }
+    }
 
-p{
-  line-height:1.7;
-  color:var(--muted);
-}
+    .card{
+      background: rgba(255,255,255,0.05);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 26px;
+      box-shadow: 0 12px 30px rgba(0,0,0,0.35);
+    }
+    .card h3{
+      margin: 0 0 10px;
+      font-size: 1.45rem;
+      font-weight: 900;
+      letter-spacing: -0.2px;
+    }
+    .card p, .card li{
+      color: var(--muted);
+      line-height: 1.7;
+    }
+    .card ul{
+      margin: 12px 0 0 18px;
+      padding: 0;
+    }
+    .card li{ margin: 10px 0; }
 
-input, textarea{
-  width:100%;
-  padding:14px;
-  margin-top:12px;
-  border-radius:12px;
-  border:1px solid var(--line);
-  background:#111;
-  color:var(--text);
-}
+    .btn-row{
+      display:flex;
+      gap:12px;
+      flex-wrap:wrap;
+      margin-top:16px;
+    }
+    .link{
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      color: var(--text);
+    }
 
-button{
-  margin-top:16px;
-  padding:14px 22px;
-  border-radius:14px;
-  border:1px solid var(--line);
-  background:rgba(63,74,47,0.6);
-  color:var(--text);
-  font-weight:700;
-  cursor:pointer;
-}
+    /* Book section */
+    .form-grid{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:14px;
+      margin-top: 14px;
+    }
+    @media (max-width: 900px){
+      .form-grid{ grid-template-columns: 1fr; }
+    }
+    input, textarea{
+      width:100%;
+      padding:14px;
+      border-radius:12px;
+      border:1px solid var(--line);
+      background:#111;
+      color:var(--text);
+      font-size: 1rem;
+    }
+    textarea{ resize: vertical; }
 
-footer{
-  border-top:1px solid var(--line);
-  padding:40px 0;
-  text-align:center;
-  color:var(--muted);
-}
-</style>
+    footer{
+      border-top:1px solid var(--line);
+      padding: 36px 0;
+      text-align:center;
+      color: var(--muted);
+      background: rgba(0,0,0,0.35);
+      font-size: .95rem;
+    }
+  </style>
 </head>
 
 <body>
 
-<header>
-  <div class="container nav">
-    <img src="./assets/logo-word.png" class="logo">
+  <header id="top">
+    <div class="container nav">
+      <a class="brand" href="#top" aria-label="Peninsula home" onclick="scrollToTop(event)">
+        <img src="./assets/logo-word.png" alt="Peninsula logo">
+      </a>
 
-    <div class="lang-switch">
-      <div class="lang-btn" onclick="toggleLang()">🌍 EN</div>
-      <div class="lang-menu" id="langMenu">
-        <div onclick="setLang('en')">English</div>
-        <div onclick="setLang('es')">Español</div>
-        <div onclick="setLang('fr')">Français</div>
+      <!-- Top-right: Home + Book + Language -->
+      <div class="nav-right">
+        <a class="btn" href="#top" id="navHome" onclick="scrollToTop(event)">Home</a>
+        <a class="btn btn-primary" href="#book" id="navBook">Book</a>
+
+        <div class="lang">
+          <button class="btn" type="button" id="langBtn" aria-haspopup="true" aria-expanded="false">🌍 EN</button>
+          <div class="lang-menu" id="langMenu" role="menu" aria-label="Language menu">
+            <div class="lang-item" role="menuitem" onclick="setLang('en')">English</div>
+            <div class="lang-item" role="menuitem" onclick="setLang('es')">Español</div>
+            <div class="lang-item" role="menuitem" onclick="setLang('fr')">Français</div>
+          </div>
+        </div>
       </div>
     </div>
-  </div>
-</header>
+  </header>
 
-<section class="hero">
-  <div class="video-bg">
-    <iframe
-      src="https://www.youtube.com/embed/NQyanL1QEPw?autoplay=1&mute=1&loop=1&playlist=NQyanL1QEPw&controls=0&modestbranding=1&rel=0"
-      frameborder="0"
-      allow="autoplay; fullscreen"
-      allowfullscreen>
-    </iframe>
-  </div>
-  <div class="overlay"></div>
-  <div class="hero-logo">
-    <img src="./assets/logo-word.png">
-  </div>
-</section>
+  <!-- Hero with background video + centered logo -->
+  <section class="hero">
+    <div class="video-bg">
+      <iframe
+        src="https://www.youtube.com/embed/NQyanL1QEPw?autoplay=1&mute=1&loop=1&playlist=NQyanL1QEPw&controls=0&modestbranding=1&rel=0"
+        frameborder="0"
+        allow="autoplay; fullscreen"
+        allowfullscreen>
+      </iframe>
+    </div>
+    <div class="overlay"></div>
+    <div class="hero-logo">
+      <img src="./assets/logo-word.png" alt="Peninsula Surf School">
+    </div>
+  </section>
 
-<section class="section">
+  <!-- About Peninsula section (the one from your screenshot) -->
+  <section class="section" id="about">
+    <div class="container">
+      <h2 class="page-title" id="aboutPeninsulaTitle">About Peninsula</h2>
 
-  <div class="card">
-    <h2 id="aboutTitle">About Cristian</h2>
-    <p id="aboutText">
-      Cristian Padilla is a passionate local surf instructor based in Las Terrenas. 
-      With years of experience surfing the waves of Playa Bonita and beyond, 
-      he focuses on safe progression, ocean awareness, and helping students build real confidence in the water.
-      Cristian also offers lessons in Cabarete upon request.
-    </p>
-  </div>
+      <p class="lead" id="aboutPeninsulaLead">
+        Peninsula is a surf school based in <strong>Las Terrenas</strong>, Samaná — focused on quality lessons at
+        <strong>Playa Bonita</strong>. No camp, no fluff. Just surf coaching that helps you progress fast and feel safe
+        in the water.
+      </p>
 
-  <div class="card">
-    <h2 id="locationTitle">Location</h2>
-    <p id="locationText">
-      Playa Bonita, Las Terrenas (Samaná). Lessons also available in Cabarete by request.
-    </p>
-  </div>
+      <div class="cards-2">
+        <div class="card">
+          <h3 id="meetTitle">Meet your instructor</h3>
+          <p id="meetText">
+            <strong>Cristian Padilla</strong> teaches with a calm, clear approach: ocean awareness first, technique second,
+            confidence always. Whether it’s your first time standing up or you’re refining turns and timing, Cristian keeps
+            it structured and fun.
+          </p>
 
-  <div class="card">
-    <h2 id="bookTitle">Book a Lesson</h2>
-    <form>
-      <input placeholder="Your name">
-      <input placeholder="Your email">
-      <textarea placeholder="Your level, dates, group size"></textarea>
-      <button>Send Inquiry</button>
-    </form>
-  </div>
+          <p style="margin-top:14px;">
+            <span id="followLabel" style="color: var(--muted);">Follow Cristian:</span>
+            <a class="link" href="https://www.instagram.com/cristianppadilla/?hl=en" target="_blank" rel="noopener">Instagram</a>
+          </p>
+        </div>
 
-</section>
+        <div class="card">
+          <h3 id="teachTitle">Where we teach</h3>
+          <ul id="teachList">
+            <li id="teach1"><strong>Main spot:</strong> Playa Bonita, Las Terrenas (Samaná)</li>
+            <li id="teach2"><strong>Also available:</strong> Cabarete (by request)</li>
+            <li id="teach3"><strong>Lesson style:</strong> private or small group</li>
+            <li id="teach4"><strong>Focus:</strong> safety, fundamentals, fast progression</li>
+          </ul>
 
-<footer>
-  © <span id="year"></span> Peninsula Surf School
-</footer>
+          <div class="btn-row">
+            <a class="btn btn-primary" href="#book" id="aboutBookBtn">Book a lesson</a>
+            <a class="btn" href="#top" id="aboutHomeBtn" onclick="scrollToTop(event)">Back to home</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-<script>
-document.getElementById("year").textContent = new Date().getFullYear();
+  <!-- Book section -->
+  <section class="section" id="book">
+    <div class="container">
+      <div class="card">
+        <h3 id="bookTitle" style="margin-bottom:6px;">Book a lesson</h3>
+        <p id="bookLead" style="margin:0 0 12px; color: var(--muted);">
+          Send a quick inquiry and we’ll confirm the best time based on conditions.
+        </p>
 
-function toggleLang(){
-  const menu = document.getElementById("langMenu");
-  menu.style.display = menu.style.display === "block" ? "none" : "block";
-}
+        <form id="contactForm">
+          <div class="form-grid">
+            <input required name="name" id="fName" placeholder="Your name" />
+            <input required name="email" id="fEmail" type="email" placeholder="Your email" />
+          </div>
+          <textarea required name="message" id="fMessage" rows="5" placeholder="Your level, preferred date/time, and group size"></textarea>
 
-const translations = {
-  en:{
-    aboutTitle:"About Cristian",
-    aboutText:"Cristian Padilla is a passionate local surf instructor based in Las Terrenas. With years of experience surfing the waves of Playa Bonita and beyond, he focuses on safe progression, ocean awareness, and helping students build real confidence in the water. Cristian also offers lessons in Cabarete upon request.",
-    locationTitle:"Location",
-    locationText:"Playa Bonita, Las Terrenas (Samaná). Lessons also available in Cabarete by request.",
-    bookTitle:"Book a Lesson"
-  },
-  es:{
-    aboutTitle:"Sobre Cristian",
-    aboutText:"Cristian Padilla es un instructor de surf local apasionado con base en Las Terrenas. Con años de experiencia surfeando en Playa Bonita y otras playas, se enfoca en la progresión segura, la conciencia del océano y en ayudar a sus estudiantes a ganar verdadera confianza en el agua. También ofrece clases en Cabarete bajo solicitud.",
-    locationTitle:"Ubicación",
-    locationText:"Playa Bonita, Las Terrenas (Samaná). Clases también disponibles en Cabarete bajo solicitud.",
-    bookTitle:"Reservar una Clase"
-  },
-  fr:{
-    aboutTitle:"À propos de Cristian",
-    aboutText:"Cristian Padilla est un instructeur de surf local passionné basé à Las Terrenas. Avec des années d’expérience sur les vagues de Playa Bonita et ailleurs, il se concentre sur une progression sûre, la compréhension de l’océan et la confiance dans l’eau. Des cours sont également disponibles à Cabarete sur demande.",
-    locationTitle:"Emplacement",
-    locationText:"Playa Bonita, Las Terrenas (Samaná). Cours également disponibles à Cabarete sur demande.",
-    bookTitle:"Réserver une Leçon"
-  }
-};
+          <div class="btn-row" style="margin-top:14px;">
+            <button class="btn btn-primary" type="submit" id="sendBtn">Send inquiry</button>
+            <a class="btn" href="#top" id="backTopBtn" onclick="scrollToTop(event)">Home</a>
+          </div>
 
-function setLang(lang){
-  document.getElementById("aboutTitle").innerText = translations[lang].aboutTitle;
-  document.getElementById("aboutText").innerText = translations[lang].aboutText;
-  document.getElementById("locationTitle").innerText = translations[lang].locationTitle;
-  document.getElementById("locationText").innerText = translations[lang].locationText;
-  document.getElementById("bookTitle").innerText = translations[lang].bookTitle;
+          <p id="formHint" style="margin:10px 0 0; color: var(--muted);"></p>
+        </form>
+      </div>
+    </div>
+  </section>
 
-  document.querySelector(".lang-btn").innerText =
-    lang === "en" ? "🌍 EN" :
-    lang === "es" ? "🌍 ES" : "🌍 FR";
+  <footer>
+    © <span id="year"></span> Peninsula Surf School
+  </footer>
 
-  document.getElementById("langMenu").style.display = "none";
-}
-</script>
+  <script>
+    // Basic helpers
+    document.getElementById("year").textContent = new Date().getFullYear();
 
+    function scrollToTop(e){
+      if(e) e.preventDefault();
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    // Language dropdown
+    const langBtn = document.getElementById("langBtn");
+    const langMenu = document.getElementById("langMenu");
+
+    langBtn.addEventListener("click", () => {
+      const open = langMenu.style.display === "block";
+      langMenu.style.display = open ? "none" : "block";
+      langBtn.setAttribute("aria-expanded", String(!open));
+    });
+
+    // Close language menu when clicking outside
+    document.addEventListener("click", (e) => {
+      const within = e.target.closest(".lang");
+      if (!within) {
+        langMenu.style.display = "none";
+        langBtn.setAttribute("aria-expanded", "false");
+      }
+    });
+
+    // Translations
+    const T = {
+      en: {
+        langLabel: "🌍 EN",
+        navHome: "Home",
+        navBook: "Book",
+        aboutPeninsulaTitle: "About Peninsula",
+        aboutPeninsulaLead: "Peninsula is a surf school based in <strong>Las Terrenas</strong>, Samaná — focused on quality lessons at <strong>Playa Bonita</strong>. No camp, no fluff. Just surf coaching that helps you progress fast and feel safe in the water.",
+        meetTitle: "Meet your instructor",
+        meetText: "<strong>Cristian Padilla</strong> teaches with a calm, clear approach: ocean awareness first, technique second, confidence always. Whether it’s your first time standing up or you’re refining turns and timing, Cristian keeps it structured and fun.",
+        followLabel: "Follow Cristian:",
+        teachTitle: "Where we teach",
+        teach1: "<strong>Main spot:</strong> Playa Bonita, Las Terrenas (Samaná)",
+        teach2: "<strong>Also available:</strong> Cabarete (by request)",
+        teach3: "<strong>Lesson style:</strong> private or small group",
+        teach4: "<strong>Focus:</strong> safety, fundamentals, fast progression",
+        aboutBookBtn: "Book a lesson",
+        aboutHomeBtn: "Back to home",
+        bookTitle: "Book a lesson",
+        bookLead: "Send a quick inquiry and we’ll confirm the best time based on conditions.",
+        fName: "Your name",
+        fEmail: "Your email",
+        fMessage: "Your level, preferred date/time, and group size",
+        sendBtn: "Send inquiry",
+        backTopBtn: "Home",
+        formHint: "Opening your email app…"
+      },
+      es: {
+        langLabel: "🌍 ES",
+        navHome: "Inicio",
+        navBook: "Reservar",
+        aboutPeninsulaTitle: "Sobre Peninsula",
+        aboutPeninsulaLead: "Peninsula es una escuela de surf en <strong>Las Terrenas</strong>, Samaná — enfocada en clases de calidad en <strong>Playa Bonita</strong>. Sin campamento, sin relleno. Solo coaching de surf para progresar rápido y sentirte seguro en el agua.",
+        meetTitle: "Conoce a tu instructor",
+        meetText: "<strong>Cristian Padilla</strong> enseña con un enfoque calmado y claro: primero conciencia del océano, luego técnica, siempre confianza. Ya sea tu primera vez de pie o estés afinando giros y timing, Cristian lo mantiene estructurado y divertido.",
+        followLabel: "Sigue a Cristian:",
+        teachTitle: "Dónde enseñamos",
+        teach1: "<strong>Lugar principal:</strong> Playa Bonita, Las Terrenas (Samaná)",
+        teach2: "<strong>También disponible:</strong> Cabarete (bajo solicitud)",
+        teach3: "<strong>Estilo de clase:</strong> privada o grupo pequeño",
+        teach4: "<strong>Enfoque:</strong> seguridad, fundamentos, progreso rápido",
+        aboutBookBtn: "Reservar una clase",
+        aboutHomeBtn: "Volver al inicio",
+        bookTitle: "Reservar una clase",
+        bookLead: "Envía una consulta rápida y confirmaremos el mejor horario según las condiciones.",
+        fName: "Tu nombre",
+        fEmail: "Tu correo",
+        fMessage: "Tu nivel, fecha/hora preferida y tamaño del grupo",
+        sendBtn: "Enviar consulta",
+        backTopBtn: "Inicio",
+        formHint: "Abriendo tu correo…"
+      },
+      fr: {
+        langLabel: "🌍 FR",
+        navHome: "Accueil",
+        navBook: "Réserver",
+        aboutPeninsulaTitle: "À propos de Peninsula",
+        aboutPeninsulaLead: "Peninsula est une école de surf basée à <strong>Las Terrenas</strong>, Samaná — axée sur des cours de qualité à <strong>Playa Bonita</strong>. Pas de camp, pas de blabla. Juste un coaching surf qui vous fait progresser vite et vous met en confiance dans l’eau.",
+        meetTitle: "Rencontrez votre instructeur",
+        meetText: "<strong>Cristian Padilla</strong> enseigne avec une approche calme et claire : d’abord la compréhension de l’océan, ensuite la technique, toujours la confiance. Première fois debout ou optimisation des turns et du timing, Cristian garde ça structuré et fun.",
+        followLabel: "Suivre Cristian :",
+        teachTitle: "Où nous enseignons",
+        teach1: "<strong>Spot principal :</strong> Playa Bonita, Las Terrenas (Samaná)",
+        teach2: "<strong>Aussi disponible :</strong> Cabarete (sur demande)",
+        teach3: "<strong>Format :</strong> privé ou petit groupe",
+        teach4: "<strong>Focus :</strong> sécurité, fondamentaux, progression rapide",
+        aboutBookBtn: "Réserver un cours",
+        aboutHomeBtn: "Retour à l’accueil",
+        bookTitle: "Réserver un cours",
+        bookLead: "Envoyez une demande rapide et nous confirmerons le meilleur moment selon les conditions.",
+        fName: "Votre nom",
+        fEmail: "Votre email",
+        fMessage: "Votre niveau, date/heure souhaitée et taille du groupe",
+        sendBtn: "Envoyer",
+        backTopBtn: "Accueil",
+        formHint: "Ouverture de votre email…"
+      }
+    };
+
+    function setLang(lang){
+      const t = T[lang] || T.en;
+
+      document.documentElement.lang = lang;
+
+      // Header buttons + language label
+      document.getElementById("navHome").textContent = t.navHome;
+      document.getElementById("navBook").textContent = t.navBook;
+      langBtn.textContent = t.langLabel;
+
+      // About section
+      document.getElementById("aboutPeninsulaTitle").textContent = t.aboutPeninsulaTitle;
+      document.getElementById("aboutPeninsulaLead").innerHTML = t.aboutPeninsulaLead;
+
+      document.getElementById("meetTitle").textContent = t.meetTitle;
+      document.getElementById("meetText").innerHTML = t.meetText;
+      document.getElementById("followLabel").textContent = t.followLabel;
+
+      document.getElementById("teachTitle").textContent = t.teachTitle;
+      document.getElementById("teach1").innerHTML = t.teach1;
+      document.getElementById("teach2").innerHTML = t.teach2;
+      document.getElementById("teach3").innerHTML = t.teach3;
+      document.getElementById("teach4").innerHTML = t.teach4;
+
+      document.getElementById("aboutBookBtn").textContent = t.aboutBookBtn;
+      document.getElementById("aboutHomeBtn").textContent = t.aboutHomeBtn;
+
+      // Book section
+      document.getElementById("bookTitle").textContent = t.bookTitle;
+      document.getElementById("bookLead").textContent = t.bookLead;
+      document.getElementById("fName").placeholder = t.fName;
+      document.getElementById("fEmail").placeholder = t.fEmail;
+      document.getElementById("fMessage").placeholder = t.fMessage;
+      document.getElementById("sendBtn").textContent = t.sendBtn;
+      document.getElementById("backTopBtn").textContent = t.backTopBtn;
+
+      // Close menu
+      langMenu.style.display = "none";
+      langBtn.setAttribute("aria-expanded", "false");
+
+      // Persist
+      try{ localStorage.setItem("peninsula_lang", lang); }catch(e){}
+    }
+
+    // Load persisted language
+    (function initLang(){
+      let saved = "en";
+      try{
+        const v = localStorage.getItem("peninsula_lang");
+        if(v && T[v]) saved = v;
+      }catch(e){}
+      setLang(saved);
+    })();
+
+    // Mailto booking form
+    document.getElementById("contactForm").addEventListener("submit", function(e){
+      e.preventDefault();
+      const form = new FormData(e.target);
+      const name = form.get("name") || "";
+      const email = form.get("email") || "";
+      const message = form.get("message") || "";
+
+      // CHANGE THIS to your real booking email:
+      const to = "hello@yourdomain.com";
+
+      const currentLang = document.documentElement.lang || "en";
+      const subject =
+        currentLang === "es" ? "Consulta — Clase de Surf (Peninsula)" :
+        currentLang === "fr" ? "Demande — Cours de Surf (Peninsula)" :
+        "Inquiry — Surf Lesson (Peninsula)";
+
+      const body = encodeURIComponent(
+        `Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}\n`
+      );
+
+      // Show hint in current language
+      const t = T[currentLang] || T.en;
+      document.getElementById("formHint").textContent = t.formHint;
+
+      window.location.href = `mailto:${to}?subject=${encodeURIComponent(subject)}&body=${body}`;
+    });
+  </script>
 </body>
 </html>
